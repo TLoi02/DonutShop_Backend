@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cập nhật tin tức</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container content">
+        <h1 class="dashboard__title">Cập nhật tin tức</h1>
+        <form th:action="@{/admin/blog/edit/{id}(id=${blog.id})}" th:object="${blog}" method="post" class="form" enctype = "multipart/form-data">
+            <div class="col-6 mb-3">
+                <label class="form-label" for="name">Tên bài đăng:</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required autofocus>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="author">Tên tác giả:</label>
+                <input type="text" class="form-control" id="author" th:field="*{author}" required>
+            </div>
+            <!--Image product-->
+            <div class="col-6 mb-3">
+                <label class="form-label" for="image">Hình ảnh:</label>
+                <input class="form-control" type="file" id="image" name="imageBlog" accept="image/png, image/jpeg" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="p1">P1:</label>
+                <input type="text" class="form-control" id="p1" th:field="*{p1}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="p2">P2:</label>
+                <input type="text" class="form-control" id="p2" th:field="*{p2}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="p3">P3:</label>
+                <input type="text" class="form-control" id="p3" th:field="*{p3}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="p4">P4:</label>
+                <input type="text" class="form-control" id="p4" th:field="*{p4}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="main">Nội dung chính:</label>
+                <input type="text" class="form-control" id="main" th:field="*{main}" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="isNew">Bài đăng mới (0 hoặc 1):</label>
+                <input type="number" min="0" max="1" value="0" class="form-control" id="isNew" th:field="*{isNew}" required>
+            </div>
+            <input type="submit" class="btn btn-success" value="Cập nhật">
+        </form>
+        <a class="btn btn-primary" style="margin: 10px 0;" th:href="@{/admin/dashboard}">Trở về trang quản trị</a>
+    </div>
+
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sản phẩm</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container content">
+        <h1 class="dashboard__title">Thêm sản phẩm</h1>
+        <form th:action="@{/admin/product/create}" th:object="${product}" method="post" class="form" enctype = "multipart/form-data">
+            <div class="col-6 mb-3">
+                <label class="form-label" for="type">Tên loại:</label>
+                <input type="text" class="form-control" id="type" th:field="*{type}" required autofocus>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="name">Tên sản phẩm:</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required>
+            </div>
+            <!--Image product-->
+            <div class="col-6 mb-3">
+                <label class="form-label" for="image">Hình ảnh:</label>
+                <input class="form-control" type="file" id="image" name="imageProduct" accept="image/png, image/jpeg" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="description">Giới thiệu:</label>
+                <input type="text" class="form-control" id="description" th:field="*{description}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="ingredients">Thành phần:</label>
+                <input type="text" class="form-control" id="ingredients" th:field="*{ingredients}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="price">Giá:</label>
+                <input type="text" class="form-control" id="price" th:field="*{price}">
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="trending">Sản phẩm thịnh hành (0 hoặc 1):</label>
+                <input type="number" min="0" max="1" value="0" class="form-control" id="trending" th:field="*{trending}" required>
+            </div>
+            <input type="submit" class="btn btn-success" value="Thêm">
+        </form>
+        <a class="btn btn-primary" style="margin: 10px 0;" th:href="@{/admin/dashboard}">Trở về trang quản trị</a>
+    </div>
+
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
