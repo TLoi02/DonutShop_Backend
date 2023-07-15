@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blogs")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class BlogController {
     @Autowired
     private BlogService blogService;
