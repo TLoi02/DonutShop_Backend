@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Dashboard</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 10px;">
+            <div>
+                <a class="btn btn-danger" href="/logout">Đăng xuất</a>
+            </div>
+        </div>
+        <div class="dashboard__title">
+            <h4>Trang quản trị</h4>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tab1">Sản phẩm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab2">Tin tức</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!--Quản lí sản phẩm-->
+            <div id="tab1" class="tab-pane fade show active">
+                <h3>Quản lí sản phẩm</h3>
+                <div class="container">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div>
+                            <a href="/admin/product/create" class="btn btn-success">Thêm sản phẩm</a>
+                        </div>
+                    </div>
+                    <!--Table handel-->
+                    <div class="row">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Loại</th>
+                                <th>Mô tả</th>
+                                <th>Thành phần</th>
+                                <th>Ảnh</th>
+                                <th>Giá</th>
+                                <th>Thịnh hành</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            <tr th:each="product:${listProduct}">
+                                <td th:text = "${product.id}"></td>
+                                <td th:text = "${product.name}"></td>
+                                <td th:text = "${product.type}"></td>
+                                <td th:text = "${product.description}"></td>
+                                <td th:text = "${product.ingredients}"></td>
+                                <td>
+                                    <img style="width: 50px; height: 50px; object-fit: cover;" th:src="@{${product.image}}" alt="blog_image" />
+                                </td>
+                                <td th:text = "${product.price}"></td>
+                                <td th:text = "${product.trending}"></td>
+                                <td>
+                                    <a class="btn btn-success" th:href="@{/admin/product/edit/{id}(id=${product.id})}">Cập nhật</a>
+                                    <a class="btn btn-danger" th:href="@{/admin/product/delete/{id}(id=${product.id})}" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--Quản lí tin tức-->
+            <div id="tab2" class="tab-pane fade">
+                <h3>Quản lí tin tức</h3>
+                <div class="container">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div>
+                            <a href="/admin/blog/create" class="btn btn-success">Thêm tin tức</a>
+                        </div>
+                    </div>
+                    <!--Table handel-->
+                    <div class="row">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Tác giả</th>
+                                <th>Ảnh</th>
+                                <th>P1</th>
+                                <th>P2</th>
+                                <th>P3</th>
+                                <th>P4</th>
+                                <th>Nội dung chính</th>
+                                <th>Tin mới</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            <tr th:each="blog:${listBlog}">
+                                <td th:text = "${blog.id}"></td>
+                                <td th:text = "${blog.name}"></td>
+                                <td th:text = "${blog.author}"></td>
+                                <td>
+                                    <img style="width: 50px; height: 50px; object-fit: cover;" th:src="@{${blog.image}}" alt="blog_image" />
+                                </td>
+                                <td th:text = "${blog.p1}"></td>
+                                <td th:text = "${blog.p2}"></td>
+                                <td th:text = "${blog.p3}"></td>
+                                <td th:text = "${blog.p4}"></td>
+                                <td th:text = "${blog.main}"></td>
+                                <td th:text = "${blog.isNew}"></td>
+                                <td>
+                                    <a class="btn btn-success" th:href="@{/admin/blog/edit/{id}(id=${blog.id})}">Cập nhật</a>
+                                    <a class="btn btn-danger" th:href="@{/admin/blog/delete/{id}(id=${blog.id})}" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      // Get all tab links
+      var tabLinks = document.querySelectorAll('.nav-link');
+
+      // Get tab content divs
+      var tabContents = document.querySelectorAll('.tab-pane');
+
+      // Function to handle tab switching
+      function switchTab(event) {
+        event.preventDefault();
+
+        // Remove the 'active' class from all tab links and tab content divs
+        tabLinks.forEach(function (link) {
+          link.classList.remove('active');
+        });
+
+        tabContents.forEach(function (content) {
+          content.classList.remove('show', 'active');
+        });
+
+        // Add the 'active' class to the clicked tab link and corresponding tab content div
+        var targetTab = event.target.getAttribute('href');
+        event.target.classList.add('active');
+        document.querySelector(targetTab).classList.add('show', 'active');
+      }
+
+      // Add click event listeners to tab links
+      tabLinks.forEach(function (link) {
+        link.addEventListener('click', switchTab);
+      });
+    </script>
+</body>
+</html>
