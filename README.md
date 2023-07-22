@@ -3,7 +3,7 @@ Project coding to create Admin dashboard and create API to get data for Frontend
 ## Installation
 1. Clone this repo to local.
 2. Open MySQL and create database name 'donutstore'.
-3. Download file backup database and restore database. [Link download!](URL)
+3. Download file backup database and restore database. [Link download!](https://drive.google.com/file/d/1oVW4FEjrsF5X_GnLG0PHSUtE_OvoNqdI/view?usp=sharing)
 4. Open file application.properties and type your account to login your MySQL (Username and password).
 5. Success install now you can run project.
 ## Account
