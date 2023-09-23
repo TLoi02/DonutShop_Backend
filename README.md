@@ -19,6 +19,6 @@ Project coding to create Admin dashboard and create API to get data for Frontend
 [Watch demo](https://drive.google.com/file/d/1GJTs3St0h32soTAKdiBMsha9PDe3uCez/view?usp=sharing)
 ## My other projects
 - [Donut Shop Frontend](https://github.com/TLoi02/Donutshop_Frontend).
-- [Book Shop](https://github.com/TLoi02/BookStore-Java).
+- [LTech Book](https://github.com/TLoi02/LTech-Book).
 - [Notes App](https://github.com/TLoi02/Notes-app).
 - [Chat With AI](https://github.com/TLoi02/Chat-with-OpenAI).
